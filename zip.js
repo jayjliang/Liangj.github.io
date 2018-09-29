@@ -2,17 +2,17 @@ function unzipKeyFrame(keyframe) {
     // var dateStart = new Date();
     if(keyframe && keyframe.type == 'k' && keyframe.z) {
         var temp = unzipString(keyframe.z);
-      var unzippedKeyFrame = JSON.parse(temp);
-      if(unzippedKeyFrame && unzippedKeyFrame[0] && unzippedKeyFrame[0].k && unzippedKeyFrame[0].k.st == 'z') {
-        var k = unzippedKeyFrame[0].k;
-        k.s = top.unzipWithZip2DArray(k.s, k.r, k.c, null);
-        k.st = 'set';
-      }
-      // console.log("cost: "+((new Date()).getTime() - dateStart.getTime()) + "ms");
-      return unzippedKeyFrame;
-    }else {
-      return [keyframe];
-    }
+    //   var unzippedKeyFrame = JSON.parse(temp);
+    //   if(unzippedKeyFrame && unzippedKeyFrame[0] && unzippedKeyFrame[0].k && unzippedKeyFrame[0].k.st == 'z') {
+    //     var k = unzippedKeyFrame[0].k;
+    //     k.s = top.unzipWithZip2DArray(k.s, k.r, k.c, null);
+    //     k.st = 'set';
+    //   }
+    //   // console.log("cost: "+((new Date()).getTime() - dateStart.getTime()) + "ms");
+    //   return unzippedKeyFrame;
+    // }else {
+    //   return [keyframe];
+    // }
     // return unzipString(keyframe);
   }
   function unzipString(zipped) {
