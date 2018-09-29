@@ -39,9 +39,9 @@
             var execTime = timer('stop');
 
             if ( typeof console === "object") {
-                appendHTML("Mean execution time was: ", execTime / iterations);
-                appendHTML("Sum execution time was: ", execTime);
-                appendHTML("Result of the method call was:", result[0]);
+                appendHTML("Mean execution time was: " + execTime / iterations);
+                appendHTML("Sum execution time was: " + execTime);
+                appendHTML("Result of the method call was:" + result[0]);
             }
 
             return execTime;  
