@@ -1,0 +1,91 @@
+<html>
+    <body>
+        <p>正在运行</p>
+    </body>
+    <script>
+        /**
+        * Figure out how long it takes for a method to execute.
+        * 
+        * @param {Function} method to test 
+        * @param {number} iterations number of executions.
+        * @param {Array} args to pass in. 
+        * @param {T} context the context to call the method in.
+        * @return {number} the time it took, in milliseconds to execute.
+        */
+        var bench = function (method, iterations, args, context) {
+            var time = 0;
+            var timer = function (action) {
+                var d = Date.now();
+                if (time < 1 || action === 'start') {
+                    time = d;
+                    return 0;
+                } else if (action === 'stop') {
+                    var t = d - time;
+                    time = 0;    
+                    return t;
+                } else {
+                    return d - time;    
+                }
+            };
+
+            var result = [];
+            var i = 0;
+            timer('start');
+            while (i < iterations) {
+                result.push(method.apply(context, args));
+                i++;
+            }
+
+            var execTime = timer('stop');
+
+            if ( typeof console === "object") {
+                appendHTML("Mean execution time was: ", execTime / iterations);
+                appendHTML("Sum execution time was: ", execTime);
+                appendHTML("Result of the method call was:", result[0]);
+            }
+
+            return execTime;  
+        };
+        
+        var appendHTML = function(text) {
+            var p = document.createElement('p');
+            p.innerText = text;
+            document.body.appendChild(p);
+        }
+
+        function is(valueA, valueB) {
+            if (valueA === valueB || (valueA !== valueA && valueB !== valueB)) {
+                return true;
+            }
+            if (!valueA || !valueB) {
+                return false;
+            }
+            if (typeof valueA.valueOf === 'function' &&
+                typeof valueB.valueOf === 'function') {
+                valueA = valueA.valueOf();
+                valueB = valueB.valueOf();
+                if (valueA === valueB || (valueA !== valueA && valueB !== valueB)) {
+                    return true;
+                }
+                if (!valueA || !valueB) {
+                    return false;
+                }
+            }
+            if (typeof valueA.equals === 'function' &&
+                typeof valueB.equals === 'function' &&
+                valueA.equals(valueB)) {
+                return true;
+            }
+            return false;
+        }
+
+        bench(function() {
+            for(var i = 0; i < 10000000; i++) {
+                is(i, 1);
+            }
+        }, 1)
+
+    </script>
+</html>
+
+
