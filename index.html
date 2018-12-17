@@ -173,7 +173,6 @@
             e.preventDefault();
             dragging = false; // 停止移动状态
             localStorage.setItem(localStoragekey, parseInt(dragDom.offsetTop));
-            alert('set')
         };
         document.ontouchend= function(e) {
             console.log('document mouseup');
@@ -181,7 +180,6 @@
                 e.preventDefault();
                 dragging = false; // 停止移动状态
                 localStorage.setItem(localStoragekey, parseInt(dragDom.offsetTop));
-                alert('set')
             }
             
         }
