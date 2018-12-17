@@ -109,84 +109,82 @@
         var inputContainer = document.getElementById("input-container");
         var lastheight = 0;
 
-        alert(Object.keys(localStorage))
-        localStorage.setItem(localStoragekey, '1')
 
 
-        // inputContainer.onfocus = function() {
-        //     isInputShow = true;
-        //     inputContainer.style.top = '100px';
-        //     lastheight = localStorage.getItem(localStoragekey) || 0;
-        //     dragDom.style.top = lastheight + 'px';
-        //     dragDom.style.display="block";
-        // }
+        inputContainer.onfocus = function() {
+            isInputShow = true;
+            inputContainer.style.top = '100px';
+            lastheight = localStorage.getItem(localStoragekey) || 0;
+            dragDom.style.top = lastheight + 'px';
+            dragDom.style.display="block";
+        }
 
-        // inputContainer.onblur = function() {
-        //     isInputShow = false;
-        //     inputContainer.style.top = '-100px';
-        //     document.getElementById("toolbar").style.display="none";
-        // }
+        inputContainer.onblur = function() {
+            isInputShow = false;
+            inputContainer.style.top = '-100px';
+            document.getElementById("toolbar").style.display="none";
+        }
 
-        // document.getElementById("body").ontouchstart = function(e) {
-        //     console.log('body touch start')
-        //     if (e.target.getAttribute('id') !== 'input-container') {
-        //         if (isInputShow) {
-        //             inputContainer.blur();
-        //         } else {
-        //             inputContainer.focus();
-        //         }
-        //     }
+        document.getElementById("body").ontouchstart = function(e) {
+            console.log('body touch start')
+            if (e.target.getAttribute('id') !== 'input-container') {
+                if (isInputShow) {
+                    inputContainer.blur();
+                } else {
+                    inputContainer.focus();
+                }
+            }
             
-        // }
+        }
 
-        // var dragDom = document.getElementById('toolbar'); // 目标元素，必须为 absolute。
-        // var dragging; // 是否激活拖拽状态
-        // var tLeft, tTop; // 鼠标按下时相对于选中元素的位移
-        // var dtop;
+        var dragDom = document.getElementById('toolbar'); // 目标元素，必须为 absolute。
+        var dragging; // 是否激活拖拽状态
+        var tLeft, tTop; // 鼠标按下时相对于选中元素的位移
+        var dtop;
 
-        // // 目标元素鼠标摁下后
-        // dragDom.ontouchstart = function (e) {
-        //     console.log('mousedown');
-        //     e.preventDefault();
-        //     dragging = true; // 激活拖拽状态
-        //     tTop = e.touches[0].clientY; // 鼠标按下时和选中元素的坐标偏移:y坐标
-        //     dtop = parseInt(dragDom.offsetTop);
-        //     console.log(dtop, ' ', tTop)
-        // };
+        // 目标元素鼠标摁下后
+        dragDom.ontouchstart = function (e) {
+            console.log('mousedown');
+            e.preventDefault();
+            dragging = true; // 激活拖拽状态
+            tTop = e.touches[0].clientY; // 鼠标按下时和选中元素的坐标偏移:y坐标
+            dtop = parseInt(dragDom.offsetTop);
+            console.log(dtop, ' ', tTop)
+        };
         
 
-        // //监听鼠标移动事件
-        // document.ontouchmove = function(e) {
-        //     console.log('mousemove');
-        //     // console.log(e);
-        //     // 当目标元素处于移动激活状态
-        //     if (dragging) {
-        //         e.preventDefault();
-        //         var moveY = e.touches[0].clientY - tTop;
-        //         var bodyHeight = window.innerHeight; // 获取浏览器内容高度
+        //监听鼠标移动事件
+        document.ontouchmove = function(e) {
+            console.log('mousemove');
+            // console.log(e);
+            // 当目标元素处于移动激活状态
+            if (dragging) {
+                e.preventDefault();
+                var moveY = e.touches[0].clientY - tTop;
+                var bodyHeight = window.innerHeight; // 获取浏览器内容高度
                
-        //         dragDom.style.top = dtop + moveY + 'px';
-        //     }
-        // };
+                dragDom.style.top = dtop + moveY + 'px';
+            }
+        };
 
-        // // 目标元素鼠标放开事件
-        // dragDom.ontouchend = function (e) {
-        //     console.log('mouseup');
-        //     e.preventDefault();
-        //     dragging = false; // 停止移动状态
-        //     localStorage.setItem(localStoragekey, parseInt(dragDom.offsetTop));
-        //     alert('set')
-        // };
-        // document.ontouchend= function(e) {
-        //     console.log('document mouseup');
-        //     if (dragging) {
-        //         e.preventDefault();
-        //         dragging = false; // 停止移动状态
-        //         localStorage.setItem(localStoragekey, parseInt(dragDom.offsetTop));
-        //         alert('set')
-        //     }
+        // 目标元素鼠标放开事件
+        dragDom.ontouchend = function (e) {
+            console.log('mouseup');
+            e.preventDefault();
+            dragging = false; // 停止移动状态
+            localStorage.setItem(localStoragekey, parseInt(dragDom.offsetTop));
+            alert('set')
+        };
+        document.ontouchend= function(e) {
+            console.log('document mouseup');
+            if (dragging) {
+                e.preventDefault();
+                dragging = false; // 停止移动状态
+                localStorage.setItem(localStoragekey, parseInt(dragDom.offsetTop));
+                alert('set')
+            }
             
-        // }
+        }
     </script>
 </html>
 
