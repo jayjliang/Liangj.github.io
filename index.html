@@ -5,10 +5,14 @@
         <style type="text/css">
         body, html {
             height: 100%;
-            overflow-y: auto;
+            
         }
         body {
+           overflow: hidden;
+        }
+        #page {
             padding-top: 68px;
+            overflow-y: scroll;
         }
             .toolbar {
                 font-size: 16px;
@@ -38,8 +42,11 @@
     </head>
     <body>
         <div class="toolbar" id="toolbar" draggable="true">这是工具栏</div>
-        <input type="text" class="input-container">
-        <div class="bottom">这是页面底部</div>
+        <div id="page">
+                <input type="text" class="input-container">
+                <div class="bottom">这是页面底部</div>
+        </div>
+        
     </body>
    <script>
 
